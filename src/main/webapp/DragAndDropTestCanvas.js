@@ -79,7 +79,7 @@ function setup(){
 //		dataURL.replace("image/png", "image/octet-stream");
 //		document.getElementById('exportButton').href = dataURL;
 
-		var output = new Canvas();
+		var output = document.createElement('canvas');
 		var outCtx = output.getContext();
 
 		outCtx.drawImage(backgroundCanvas, 0, 0);
