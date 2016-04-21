@@ -5,17 +5,20 @@ window.onload = function(){
 function setup(){	
 	var backgroundCanvas = document.getElementById('backgroundCanvas');
 	var canvas = document.getElementById('draggableCanvas');
-	
+
+	var backCtx = backgroundCanvas.getContext("2d");
+	var ctx = canvas.getContext('2d');
+
+	var currentObject = null;
+
+	setupCanvas();
 	drawBackground();
-	
-	obj = {x:50, y:50, w:70, h:70};
-	
-	obj2 = {x:150, y:150, w:70, h:70};
-	
-	
-	canvas.width = window.innerWidth * 0.8;
-	canvas.height = window.innerHeight * 0.8;
-	
+
+	//Draw sample objects
+	var stakeholderList = [
+	    {x:50, y:50, w:70, h:70, colour:'#FF0000'},
+	    {x:150, y:150, w:70, h:70, colour:'#0000FF'}
+	]
 	
 	canvas.addEventListener('mousedown', mouseDown, false)
 	
@@ -31,72 +34,73 @@ function setup(){
 	}
 
 	function mouseDown(e){
-		window.addEventListener('mousemove', divMove, true);
-	}
+        for(var i = 0; i < stakeholderList.length; i++){
+
+            var staker = stakeholderList[i];
+
+            if(detectHit(staker.x, staker.y, e.clientX, e.clientY, staker.w, staker.h)){
+                currentObject = staker;
+                window.addEventListener('mousemove', divMove, true);
+                break;
+            }
+        }
+    }
 
 	function divMove(e){
-		//var draggable = document.getElementById("draggable");
-		//draggable.style.top = e.clientY + 'px';
-		//draggable.style.left = e.clientX + 'px';
-		
-		if(detectHit(obj.x, obj.y, e.clientX, e.clientY, obj.w, obj.h)){
-			obj.x = e.clientX;
-			obj.y = e.clientY;
-			
-			draw();
-		}else if(detectHit(obj2.x, obj2.y, e.clientX, e.clientY, obj2.w, obj2.h)){
-			obj2.x = e.clientX;
-			obj2.y = e.clientY;
-			
-			draw();
-		}
-		event.preventDefault();
+        currentObject.x = e.clientX;
+        currentObject.y = e.clientY;
+        draw();
 	}
 	
-	function detectHit(x1, y1, x2, y2, w, h){
-		if(x2-x1>w)return false;
-		if(y2-y1>h)return false;
-		return true;
+	function detectHit(objx, objy, mousex, mousey, objw, objh){
+	    if((mousex > objx && mousex < (objx+objw)) && (mousey > objy && mousey < (objy+objh))){
+	        return true;
+	    }else{
+	        return false;
+	    }
 	}
 
 	function draw(){
-		var canvas = document.getElementById('draggableCanvas');
-		var ctx = canvas.getContext('2d');
-		
-		ctx.clearRect(0, 0, canvas.width, canvas.height);
-		
-		ctx.fillStyle = 'blue';
-		
-		ctx.fillRect(obj.x, obj.y, obj.w, obj.h);
-		
-		ctx.fillStyle = 'red';
-		
-		ctx.fillRect(obj2.x, obj2.y, obj2.w, obj2.h);
-		
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        for(var i = 0; i < stakeholderList.length; i++){
+            var staker = stakeholderList[i];
+
+            ctx.fillStyle = staker.colour;
+            ctx.fillRect(staker.x, staker.y, staker.w, staker.h)
+        }
 	}
 	
 	function savePNG(){
-		ctx = canvas.getContext('2d');
 		ctx.drawImage(backgroundCanvas, 0, 0);
-		
+
 		var dataURL = canvas.toDataURL("image/png");
-		//document.write('<img src="'+dataURL+'"/>');
-		//window.open(dataURL);
+		dataURL.replace("image/png", "image/octet-stream");
 		document.getElementById('exportButton').href = dataURL;
+
 	}
 	
 	function drawBackground(){
-		
-		backgroundCanvas.width = window.innerWidth * 0.8;
-		backgroundCanvas.height = window.innerHeight * 0.8;
-		
-		var backCtx = backgroundCanvas.getContext("2d");
-		
+
 		var backgroundImage = new Image();
 		backgroundImage.onload = function(){
-			backCtx.drawImage(backgroundImage,50,50);  
+			backCtx.drawImage(backgroundImage,50,50);
 		}
 		backgroundImage.src = "images/AFISH.png";
+	}
+
+	function setupCanvas(){
+	    canvas.width = window.innerWidth * 0.8;
+        canvas.height = window.innerHeight * 0.8;
+
+	    backgroundCanvas.width = window.innerWidth * 0.8;
+        backgroundCanvas.height = window.innerHeight * 0.8;
+	}
+
+	function addStakholder(){
+	    var newStaker = {x:50, y:50, w:70, h:70, colour:'#00FF00'};
+	    stakeholderList.push(newStaker);
 	}
 }
 

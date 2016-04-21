@@ -1,18 +1,20 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="DragAndDropTestCanvas.css"></link>
+	<link rel="stylesheet" type="text/css" href="DragAndDropTestCanvas.css"/>
 	<script src="DragAndDropTestCanvas.js"></script>
 </head>
 <body>
-	<div position=default id="canvases">
-		<canvas id="backgroundCanvas" z-index:1>
+	<div id="canvases">
+		<canvas id="backgroundCanvas">
 			Sorry, Canvas is not supported
 		</canvas>
-		<canvas id="draggableCanvas" z-index:0>
+		<canvas id="draggableCanvas">
 			
 		</canvas>
-	<div>
-	<a href='#' type="button" id="exportButton" download="draggableImage.png">Export to .png</a>
+	</div>
+	<div style="float: right;">
+		<a href='#' type="button" id="exportButton" download="draggableImage.png">Export to .png</a>
+	</div>
 </body>
 </html>
