@@ -80,7 +80,7 @@ function setup(){
 //		document.getElementById('exportButton').href = dataURL;
 
 		var output = document.createElement('canvas');
-		var outCtx = output.getContext();
+		var outCtx = output.getContext('2d');
 
 		outCtx.drawImage(backgroundCanvas, 0, 0);
 		for(var i = 0; i < stakeholderList.length; i++){
