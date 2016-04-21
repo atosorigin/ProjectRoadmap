@@ -16,14 +16,15 @@ function setup(){
 
 	//Draw sample objects
 	var stakeholderList = [
-	    {x:50, y:50, w:70, h:70, colour:'#FF0000'},
-	    {x:150, y:150, w:70, h:70, colour:'#0000FF'}
+	    {x:50, y:50, w:70, h:70, colour:'#FF0000', stakeholderName:"Chester"},
+	    {x:150, y:150, w:70, h:70, colour:'#0000FF', stakeholderName:"Archibald"}
 	]
 	
 	canvas.addEventListener('mousedown', mouseDown, false)
 	
 	window.addEventListener('mouseup', mouseUp, false);
-	
+
+	document.getElementById('addStakeButton').addEventListener('click', addStakholder, false);
 	document.getElementById('exportButton').addEventListener('click', savePNG, false);
 	
 	draw();
@@ -69,17 +70,16 @@ function setup(){
 
             ctx.fillStyle = staker.colour;
             ctx.fillRect(staker.x, staker.y, staker.w, staker.h)
+            ctx.font = '15px Arial';
+            ctx.fillStyle = "#000000";
+            ctx.fillText(staker.stakeholderName, staker.x, staker.y + staker.h + 12)
         }
 	}
 	
 	function savePNG(){
-//		ctx.drawImage(backgroundCanvas, 0, 0);
-//
-//		var dataURL = canvas.toDataURL("image/png");
-//		dataURL.replace("image/png", "image/octet-stream");
-//		document.getElementById('exportButton').href = dataURL;
-
-		var output = document.createElement('canvas');
+	    var output = document.createElement('canvas');
+		output.width = window.innerWidth * 0.8;
+        output.height = window.innerHeight * 0.8;
 		var outCtx = output.getContext('2d');
 
 		outCtx.drawImage(backgroundCanvas, 0, 0);
@@ -112,9 +112,27 @@ function setup(){
 	}
 
 	function addStakholder(){
-	    var newStaker = {x:50, y:50, w:70, h:70, colour:'#00FF00'};
-	    stakeholderList.push(newStaker);
+	    if(document.getElementById("stakeholderName").value){
+            var newStaker = {
+                x:20, y:20, w:70, h:70,
+                colour:randomColour(),
+                stakeholderName: document.getElementById("stakeholderName").value
+            };
+
+            document.getElementById("stakeholderName").value = "";
+            stakeholderList.push(newStaker);
+
+            draw();
+            createSteakList();
+	    }else{
+	        alert('Please enter a name');
+	    }
 	}
+
+	function randomColour(){
+	    return '#'+Math.floor(Math.random()*16777215).toString(16);
+	}
+
 }
 
 
