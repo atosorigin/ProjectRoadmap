@@ -73,12 +73,25 @@ function setup(){
 	}
 	
 	function savePNG(){
-		ctx.drawImage(backgroundCanvas, 0, 0);
+//		ctx.drawImage(backgroundCanvas, 0, 0);
+//
+//		var dataURL = canvas.toDataURL("image/png");
+//		dataURL.replace("image/png", "image/octet-stream");
+//		document.getElementById('exportButton').href = dataURL;
 
-		var dataURL = canvas.toDataURL("image/png");
-		dataURL.replace("image/png", "image/octet-stream");
-		document.getElementById('exportButton').href = dataURL;
+		var output = new Canvas();
+		var outCtx = output.getContext();
 
+		outCtx.drawImage(backgroundCanvas, 0, 0);
+		for(var i = 0; i < stakeholderList.length; i++){
+            var staker = stakeholderList[i];
+
+            outCtx.fillStyle = staker.colour;
+            outCtx.fillRect(staker.x, staker.y, staker.w, staker.h)
+        }
+
+		var dataURL = output.toDataURL("image/png");
+        document.getElementById('exportButton').href = dataURL;
 	}
 	
 	function drawBackground(){
