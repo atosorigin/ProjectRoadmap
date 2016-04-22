@@ -1,0 +1,16 @@
+#canvases{
+
+}
+
+#controls{
+    vertical-align: top;
+}
+
+#draggableCanvas{
+	position: absolute;
+	border-style: solid;
+}
+
+.inline{
+    display: inline-block;
+}

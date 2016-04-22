@@ -9,16 +9,19 @@ function setup(){
 	var backCtx = backgroundCanvas.getContext("2d");
 	var ctx = canvas.getContext('2d');
 
-	var currentObject = null;
+	//var currentObject = null;
 
+    //Get the appropriate size for the canvas
+    var canvasSide = getDimensions();
 	setupCanvas();
 	drawBackground();
+	var canvasArea = canvas.getBoundingClientRect();
 
 	//Draw sample objects
 	var stakeholderList = [];
 	
-	canvas.addEventListener('mousedown', mouseDown, false)
-	
+	canvas.addEventListener('mousedown', mouseDown, false);
+
 	window.addEventListener('mouseup', mouseUp, false);
 
 	document.getElementById('addNewStakeholderForm').addEventListener('submit', addStakholder, false);
@@ -45,12 +48,17 @@ function setup(){
     }
 
 	function divMove(e){
-        currentObject.x = e.clientX;
-        currentObject.y = e.clientY;
+        currentObject.x = e.clientX - canvasArea.left -25;
+        currentObject.y = e.clientY - canvasArea.top -25;
         draw();
 	}
 	
 	function detectHit(objx, objy, mousex, mousey, objw, objh){
+
+	    mousex -= canvasArea.left;
+	    mousey -= canvasArea.top;
+
+
 	    if((mousex > objx && mousex < (objx+objw)) && (mousey > objy && mousey < (objy+objh))){
 	        return true;
 	    }else{
@@ -75,8 +83,9 @@ function setup(){
 	
 	function savePNG(){
 	    var output = document.createElement('canvas');
-		output.width = window.innerWidth * 0.6;
-        output.height = window.innerHeight;
+
+        output.height = canvasSide - 20;
+        output.width = output.height;
 		var outCtx = output.getContext('2d');
 
 		outCtx.drawImage(backgroundCanvas, 0, 0);
@@ -96,17 +105,23 @@ function setup(){
 		var backgroundImage = new Image();
 		backgroundImage.onload = function(){
 
-			backCtx.drawImage(backgroundImage, 10, 10, 700, 700);
+			backCtx.drawImage(backgroundImage, 0, 0, backgroundCanvas.width, backgroundCanvas.height);
 		}
 		backgroundImage.src = "images/stakeholderManagementAxis-500.svg";
 	}
 
 	function setupCanvas(){
-	    canvas.width = window.innerWidth * 0.6;
-        canvas.height = window.innerHeight;
 
-	    backgroundCanvas.width = window.innerWidth * 0.6;
-        backgroundCanvas.height = window.innerHeight;
+        backgroundCanvas.height = canvasSide - 20;
+        backgroundCanvas.width = backgroundCanvas.height;
+
+        var backgroundAres = backgroundCanvas.getBoundingClientRect();
+
+        canvas.style.top = backgroundAres.top + "px";
+        canvas.style.left = backgroundAres.left  + "px";
+
+        canvas.height = canvasSide - 20;
+        canvas.width = canvas.height;
 	}
 
 	function addStakholder(e){
@@ -132,6 +147,16 @@ function setup(){
 	    return '#'+Math.floor(Math.random()*16777215).toString(16);
 	}
 
+    function getDimensions(){
+        var winHeight = window.innerHeight;
+        var winWidth = window.innerWidth;
+
+        if(winHeight < winWidth){
+            return winHeight;
+        }else{
+            return winWidth;
+        }
+    }
 }
 
 
