@@ -14,8 +14,12 @@
 		</canvas>
 	</div>
 	<div style="float: right;">
-		<input id="stakeholderName" type="text">
-		<button id="addStakeButton">Add Stakeholder</button>
+		<form id="addNewStakeholderForm" onsubmit="return false">
+            <label for="stakeholderName">Add Stakeholder: </label>
+            <input id="stakeholderName" type="text">
+            <input type="submit" id="addStakeButton"/>
+        </form>
+
 		<a href='#' type="button" id="exportButton" download="draggableImage.png">Export to .png</a>
 	</div>
 </body>

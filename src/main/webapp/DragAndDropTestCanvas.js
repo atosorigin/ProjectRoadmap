@@ -15,16 +15,13 @@ function setup(){
 	drawBackground();
 
 	//Draw sample objects
-	var stakeholderList = [
-	    {x:50, y:50, w:70, h:70, colour:'#FF0000', stakeholderName:"Chester"},
-	    {x:150, y:150, w:70, h:70, colour:'#0000FF', stakeholderName:"Archibald"}
-	]
+	var stakeholderList = [];
 	
 	canvas.addEventListener('mousedown', mouseDown, false)
 	
 	window.addEventListener('mouseup', mouseUp, false);
 
-	document.getElementById('addStakeButton').addEventListener('click', addStakholder, false);
+	document.getElementById('addNewStakeholderForm').addEventListener('submit', addStakholder, false);
 	document.getElementById('exportButton').addEventListener('click', savePNG, false);
 	
 	draw();
@@ -98,20 +95,23 @@ function setup(){
 
 		var backgroundImage = new Image();
 		backgroundImage.onload = function(){
-			backCtx.drawImage(backgroundImage,50,50);
+
+			backCtx.drawImage(backgroundImage, 10, 10, 700, 700);
 		}
-		backgroundImage.src = "images/AFISH.png";
+		backgroundImage.src = "images/stakeholderManagementAxis-500.svg";
 	}
 
 	function setupCanvas(){
-	    canvas.width = window.innerWidth * 0.8;
-        canvas.height = window.innerHeight * 0.8;
+	    canvas.width = window.innerWidth * 0.6;
+        canvas.height = window.innerHeight;
 
-	    backgroundCanvas.width = window.innerWidth * 0.8;
-        backgroundCanvas.height = window.innerHeight * 0.8;
+	    backgroundCanvas.width = window.innerWidth * 0.6;
+        backgroundCanvas.height = window.innerHeight;
 	}
 
-	function addStakholder(){
+	function addStakholder(e){
+	    e.preventDefault
+
 	    if(document.getElementById("stakeholderName").value){
             var newStaker = {
                 x:20, y:20, w:70, h:70,
@@ -123,7 +123,6 @@ function setup(){
             stakeholderList.push(newStaker);
 
             draw();
-            createSteakList();
 	    }else{
 	        alert('Please enter a name');
 	    }
