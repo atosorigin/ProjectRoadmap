@@ -26,7 +26,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.4"
-     inkscape:cx="231.88281"
+     inkscape:cx="219.38281"
      inkscape:cy="247.66076"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -132,7 +132,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -165,13 +165,13 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="376.71429"
+       x="396.71429"
        y="781.64795"
        id="text4182"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
-         x="376.71429"
+         x="396.71429"
          y="781.64795"
-         id="tspan4186">Influence</tspan></text>
+         id="tspan4186">Interest</tspan></text>
   </g>
 </svg>

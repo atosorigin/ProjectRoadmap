@@ -75,8 +75,8 @@ function setup(){
 	
 	function savePNG(){
 	    var output = document.createElement('canvas');
-		output.width = window.innerWidth * 0.8;
-        output.height = window.innerHeight * 0.8;
+		output.width = window.innerWidth * 0.6;
+        output.height = window.innerHeight;
 		var outCtx = output.getContext('2d');
 
 		outCtx.drawImage(backgroundCanvas, 0, 0);
