@@ -94,6 +94,9 @@ function setup(){
 
             outCtx.fillStyle = staker.colour;
             outCtx.fillRect(staker.x, staker.y, staker.w, staker.h)
+            ctx.font = '15px Arial';
+            ctx.fillStyle = "#000000";
+            ctx.fillText(staker.stakeholderName, staker.x, staker.y + staker.h + 12)
         }
 
 		var dataURL = output.toDataURL("image/png");
