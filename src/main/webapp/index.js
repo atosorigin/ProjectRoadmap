@@ -24,6 +24,7 @@ function setup(){
 	document.getElementById('addNewStakeholderForm').addEventListener('submit', addStakholder, false);
 	document.getElementById('exportButton').addEventListener('click', savePNG, false);
 	document.getElementById('resetButton').addEventListener('click', reset, false);
+	document.getElementById('helpButton').addEventListener('click', drawHelp, false);
 	
 	draw();
 
@@ -100,9 +101,8 @@ function setup(){
 		var dataURL = output.toDataURL("image/png");
         document.getElementById('exportButton').href = dataURL;
 	}
-	
-	function drawBackground(){
 
+	function drawBackground(){
 		var backgroundImage = new Image();
 		backgroundImage.onload = function(){
 
@@ -178,6 +178,17 @@ function setup(){
         drawBackground();
         canvasArea = canvas.getBoundingClientRect();
         draw();
+    }
+
+    function drawHelp(){
+//        ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
+//        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        var overlay = new Image();
+        overlay.onload = function(){
+
+            ctx.drawImage(overlay, 0, 0, canvas.width, canvas.height);
+        }
+        overlay.src = "images/helpOverlay.svg";
     }
 }
 
