@@ -150,7 +150,7 @@ function setup(){
 
     function getDimensions(){
         var winHeight = window.innerHeight;
-        var winWidth = window.innerWidth;
+        var winWidth = window.innerWidth * 2/3; //Take controls panel into account.
 
         if(winHeight < winWidth){
             return winHeight;
@@ -164,8 +164,6 @@ function setup(){
 
         controls.style.height = window.innerHeight + "px";
         controls.style.width = window.innerWidth/3  + "px";
-        controls.style.background = "blue";
-
     }
 
     function reset(){
@@ -174,7 +172,7 @@ function setup(){
     }
 
     function screenChanged(){
-        canvasSide = getDimensions();
+        canvasSide = getDimensions()-6; //take 3px margin around canvas into account.
         setupMenu();
         setupCanvas();
         drawBackground();

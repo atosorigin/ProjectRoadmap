@@ -6,12 +6,34 @@ body{
     margin:0px;
 }
 
-#canvases{
+h3, p{
+    color: #FFFFFF;
+}
 
+input{
+    background: blue;
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 4px 8px 4px 8px;
+    border: 1px solid #FFFFFF;
+}
+
+input[type=text]{
+    background: #FFFFFF;
+    color: #000000;
+}
+
+input[type=submit]{
+    cursor: pointer;
 }
 
 #controls{
     vertical-align: top;
+    background: blue;
+}
+
+#canvases{
+    margin: 3px;
 }
 
 #draggableCanvas{
@@ -20,13 +42,19 @@ body{
 
 #finishButtons{
     margin-top: 1em;
-    text-align: center;
+}
+
+#exportButton{
+    background: darkorange;
 }
 
 .inline{
     display: inline-block;
 }
 
+.padding{
+    padding:1em;
+}
 
 .button {
     text-decoration: none;

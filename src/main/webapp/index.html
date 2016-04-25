@@ -7,14 +7,20 @@
 </head>
 <body>
     <div id="controls" class="inline">
-        <form id="addNewStakeholderForm" onsubmit="return false">
-            <label for="stakeholderName">Add Stakeholder: </label>
-            <input id="stakeholderName" type="text">
-            <input type="submit" id="addStakeButton" value="Add"/>
-        </form>
-		<div id="finishButtons">
-			<a href="#" class="button" id="resetButton">Reset board</a>
-			<a href='#' class="button" id="exportButton" download="stakeholders.png">Export to .png</a>
+		<div class="padding">
+			<div id="introText">
+				<h3>Stakeholder Management</h3>
+				<p>Add the major stakeholders for your project to the board, and discover both those you can safely
+					ignore and those you should be bribing the most!</p>
+			</div>
+			<form id="addNewStakeholderForm" onsubmit="return false">
+				<input id="stakeholderName" type="text">
+				<input type="submit" id="addStakeButton" value="Add"/>
+			</form>
+			<div id="finishButtons">
+				<a href="#" class="button" id="resetButton">Reset board</a>
+				<a href='#' class="button" id="exportButton" download="stakeholders.png">Export to .png</a>
+			</div>
 		</div>
     </div>
 	<div id="canvases" class="inline">
