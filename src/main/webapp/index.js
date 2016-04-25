@@ -2,33 +2,31 @@ window.onload = function(){
 	setup();
 }
 
-function setup(){	
+function setup(){
+    //Get canvas objects
 	var backgroundCanvas = document.getElementById('backgroundCanvas');
 	var canvas = document.getElementById('draggableCanvas');
-
 	var backCtx = backgroundCanvas.getContext("2d");
 	var ctx = canvas.getContext('2d');
 
-	//var currentObject = null;
+    var stakeholderList = [];
 
     //Get the appropriate size for the canvas
-    var canvasSide = getDimensions();
-	setupCanvas();
-	drawBackground();
-	var canvasArea = canvas.getBoundingClientRect();
+    var canvasSide;
+    var canvasArea;
+    screenChanged();
 
-	//Draw sample objects
-	var stakeholderList = [];
-	
 	canvas.addEventListener('mousedown', mouseDown, false);
 
 	window.addEventListener('mouseup', mouseUp, false);
+	window.addEventListener("resize", screenChanged);
 
 	document.getElementById('addNewStakeholderForm').addEventListener('submit', addStakholder, false);
 	document.getElementById('exportButton').addEventListener('click', savePNG, false);
+	document.getElementById('resetButton').addEventListener('click', reset, false);
 	
 	draw();
-		
+
 	function mouseUp()
 	{
 		window.removeEventListener('mousemove', divMove, true);
@@ -84,7 +82,7 @@ function setup(){
 	function savePNG(){
 	    var output = document.createElement('canvas');
 
-        output.height = canvasSide - 20;
+        output.height = canvasSide - 5;
         output.width = output.height;
 		var outCtx = output.getContext('2d');
 
@@ -110,12 +108,12 @@ function setup(){
 
 			backCtx.drawImage(backgroundImage, 0, 0, backgroundCanvas.width, backgroundCanvas.height);
 		}
-		backgroundImage.src = "images/stakeholderManagementAxis-500.svg";
+		backgroundImage.src = "images/axis.svg";
 	}
 
 	function setupCanvas(){
 
-        backgroundCanvas.height = canvasSide - 20;
+        backgroundCanvas.height = canvasSide - 5;
         backgroundCanvas.width = backgroundCanvas.height;
 
         var backgroundAres = backgroundCanvas.getBoundingClientRect();
@@ -123,7 +121,7 @@ function setup(){
         canvas.style.top = backgroundAres.top + "px";
         canvas.style.left = backgroundAres.left  + "px";
 
-        canvas.height = canvasSide - 20;
+        canvas.height = canvasSide - 5;
         canvas.width = canvas.height;
 	}
 
@@ -159,6 +157,29 @@ function setup(){
         }else{
             return winWidth;
         }
+    }
+
+    function setupMenu(){
+        var controls = document.getElementById("controls");
+
+        controls.style.height = window.innerHeight + "px";
+        controls.style.width = window.innerWidth/3  + "px";
+        controls.style.background = "blue";
+
+    }
+
+    function reset(){
+        stakeholderList = [];
+        draw();
+    }
+
+    function screenChanged(){
+        canvasSide = getDimensions();
+        setupMenu();
+        setupCanvas();
+        drawBackground();
+        canvasArea = canvas.getBoundingClientRect();
+        draw();
     }
 }
 

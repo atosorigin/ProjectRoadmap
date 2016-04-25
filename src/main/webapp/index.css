@@ -1,3 +1,11 @@
+*{
+    font-family: 'Roboto', sans-serif;
+}
+
+body{
+    margin:0px;
+}
+
 #canvases{
 
 }
@@ -8,9 +16,21 @@
 
 #draggableCanvas{
 	position: absolute;
-	border-style: solid;
+}
+
+#finishButtons{
+    margin-top: 1em;
+    text-align: center;
 }
 
 .inline{
     display: inline-block;
+}
+
+
+.button {
+    text-decoration: none;
+    color: #FFFFFF;
+    padding: 4px 8px 4px 8px;
+    border: 1px solid #FFFFFF;
 }

@@ -2,6 +2,7 @@
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="index.css"/>
+	<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 	<script src="index.js"></script>
 </head>
 <body>
@@ -11,8 +12,10 @@
             <input id="stakeholderName" type="text">
             <input type="submit" id="addStakeButton" value="Add"/>
         </form>
-
-        <a href='#' type="button" id="exportButton" download="stakeholders.png">Export to .png</a>
+		<div id="finishButtons">
+			<a href="#" class="button" id="resetButton">Reset board</a>
+			<a href='#' class="button" id="exportButton" download="stakeholders.png">Export to .png</a>
+		</div>
     </div>
 	<div id="canvases" class="inline">
 		<canvas id="backgroundCanvas">
