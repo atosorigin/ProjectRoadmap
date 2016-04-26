@@ -3,6 +3,8 @@ window.onload = function(){
 }
 
 function setup(){
+    document.getElementById("projectID").focus();
+
     //Get canvas objects
 	var backgroundCanvas = document.getElementById('backgroundCanvas');
 	var canvas = document.getElementById('draggableCanvas');
@@ -24,7 +26,7 @@ function setup(){
 	document.getElementById('addNewStakeholderForm').addEventListener('submit', addStakholder, false);
 	document.getElementById('exportButton').addEventListener('click', savePNG, false);
 	document.getElementById('resetButton').addEventListener('click', reset, false);
-	document.getElementById('helpButton').addEventListener('click', drawHelp, false);
+	//document.getElementById('helpButton').addEventListener('click', drawHelp, false);
 	
 	draw();
 
@@ -100,6 +102,8 @@ function setup(){
 
 		var dataURL = output.toDataURL("image/png");
         document.getElementById('exportButton').href = dataURL;
+
+        drawHelp();
 	}
 
 	function drawBackground(){

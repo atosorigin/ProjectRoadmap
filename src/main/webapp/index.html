@@ -2,34 +2,39 @@
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="index.css"/>
-	<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500|Roboto+Slab:700' rel='stylesheet' type='text/css'>
 	<script src="index.js"></script>
 </head>
 <body>
     <div id="controls" class="inline">
 		<div class="padding">
 			<div id="introText">
-				<h3>Stakeholder Management</h3>
-				<a href='#' class="button" id="helpButton">View Overlay</a>
-				<p>Add the major stakeholders for your project to the board, and discover both those you can safely
-					ignore and those you should be bribing the most!</p>
+				<input id="projectID" type="text" placeholder="Project ID#" class="label vSpacingLarge"/><br/>
+                <input id="projectName" type="text" placeholder="Project Title" class="title"/><br/>
+
+				<textarea id="projectVision" rows="4" cols="50" class="vSpacingSmall"
+                       placeholder="Write down the project vision so that your team knows What, Why, and for Whom you are building this business solution... Here is some more padding so we can see all the lines. It's a bit more than we'd usually include here"></textarea>
 			</div>
-			<form id="addNewStakeholderForm" onsubmit="return false">
-				<input id="stakeholderName" type="text">
-				<input type="submit" id="addStakeButton" value="Add"/>
-			</form>
-			<div id="finishButtons">
-				<a href="#" class="button" id="resetButton">Reset board</a>
-				<a href='#' class="button" id="exportButton" download="stakeholders.png">Export to .png</a>
+            <div class="greyBoarder vSpacingMed"></div>
+            <div id="stakeholderControls" class="vSpacingMed">
+                <div class="title">Stakeholders</div>
+                <div class="vSpacingSmall">Please add the project stakeholders and position them on the axis</div>
+                <form id="addNewStakeholderForm" class="vSpacingSmall" onsubmit="return false">
+                    <input id="stakeholderName" type="text" class="greyBoarder"/><input type="submit" id="addStakeButton" value="Add"/>
+                </form>
+            </div>
+			<div id="finishButtons" class="vSpacingLarge">
+				<a href="#" class="button" id="resetButton">Reset board
+                </a><a href='#' class="button" id="exportButton" download="stakeholders.png">Export to .png</a>
 			</div>
 		</div>
     </div>
 	<div id="canvases" class="inline">
 		<canvas id="backgroundCanvas">
-			Sorry, Canvas is not supported
+			Sorry, Canvas is not supported. Please use Chrome or Firefox to utilise this application.
 		</canvas>
 		<canvas id="draggableCanvas">
-			
+
 		</canvas>
 	</div>
 
