@@ -4,7 +4,6 @@
 
 @font-face{
     font-family: 'Roboto Slab', serif;
-
 }
 
 *{
@@ -24,13 +23,13 @@ textarea{
     margin: 0em 0em 1em 0em;
 }
 
+/* Inputs */
 input{
     background: white;
     border: none;
     color: #FFFFFF;
     text-decoration: none;
-
-    padding: 0.1em 0.1em 0.1em 0.1em;
+    padding: 0em 0.1em 0em 0.1em;
 }
 
 input[type=text]{
@@ -38,12 +37,31 @@ input[type=text]{
     color: #000000;
 }
 
-input[type=submit]{
+input[type=submit], input[type=button]{
     cursor: pointer;
-    background: #0066A1;
+    background: hsla(202, 100%, 32%, 1);
     padding-right: 1em;
     padding-left: 1em;
-    border: 1px solid #0066A1;
+    border: 1px solid hsla(202, 100%, 32%, 1);
+}
+
+input[type=submit]:hover, input[type=button]:hover{
+    background: hsla(202, 100%, 22%, 1);
+    border: 1px solid hsla(202, 100%, 22%, 1);
+}
+
+input.steakHeight{
+    height:36px;
+}
+
+input.delete{
+    background: hsla(0, 0%, 60%, 1);
+    border: 1px solid hsla(0, 0%, 60%, 1);
+}
+
+input.delete:hover{
+    background: hsla(360, 100%, 32%, 1);
+    border: 1px solid hsla(360, 100%, 32%, 1);
 }
 
 body{
@@ -82,13 +100,26 @@ body{
 .button {
     text-decoration: none;
     color: #FFFFFF;
-    background: #0066A1;
+    background: hsla(202, 100%, 32%, 1);
     padding: 0.5em 1em 0.5em 1em;
     margin-right:6px;
 }
 
+.button:hover {
+    background: hsla(202, 100%, 22%, 1);
+}
+
 .greyBoarder{
     border: 1px solid lightgrey;
+}
+
+.colourKey{
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border-radius: 50px;
+    vertical-align: middle;
+    margin: 0px 6px;
 }
 
 /* STYLESHEET STYLES */
@@ -96,21 +127,21 @@ body{
 /* Typography */
 .title{
     font-family: Roboto Slab;
-    text-color: #333333;
+    color: #333333;
     font-size: 16px;
     line-height: 24px;
 }
 
 .titleSmall{
     font-family: Roboto Slab;
-    text-color: #333333;
+    color: #333333;
     font-size: 14px;
     line-height: 24px;
 }
 
 .label{
     text-transform: uppercase;
-    text-color: #333333;
+    color: #333333;
     font-size: 12px;
     line-height: 24px;
     font-family: Roboto;
@@ -118,7 +149,7 @@ body{
 
 .labelStrong{
     text-transform: uppercase;
-    text-color: #6A6A6A;
+    color: #6A6A6A;
     font-size: 10px;
     line-height: 11px;
     font-family: Roboto;
@@ -127,7 +158,7 @@ body{
 
 .labelSmall{
     text-transform: uppercase;
-    text-color: #6A6A6A;
+    color: #6A6A6A;
     font-size: 10px;
     line-height: 11px;
     font-family: Roboto;

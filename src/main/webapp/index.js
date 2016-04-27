@@ -142,6 +142,8 @@ function setup(){
             document.getElementById("stakeholderName").value = "";
             stakeholderList.push(newStaker);
 
+            drawStakeholderList();
+
             draw();
 	    }else{
 	        alert('Please enter a name');
@@ -172,6 +174,7 @@ function setup(){
 
     function reset(){
         stakeholderList = [];
+        drawStakeholderList();
         draw();
     }
 
@@ -185,14 +188,29 @@ function setup(){
     }
 
     function drawHelp(){
-//        ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
-//        ctx.fillRect(0, 0, canvas.width, canvas.height);
         var overlay = new Image();
         overlay.onload = function(){
 
             ctx.drawImage(overlay, 0, 0, canvas.width, canvas.height);
         }
         overlay.src = "images/helpOverlay.svg";
+    }
+
+    function drawStakeholderList(){
+        var listItem = '';
+        document.getElementById("stakeholderList").innerHTML = listItem;
+
+        for(var i = 0; i<stakeholderList.length; i++){
+            var stake = stakeholderList[i];
+            listItem = '<div class="greyBoarder inline vSpacingSmall">'+
+                            '<a id="colourKey'+ i +'" href="#" class="colourKey"></a>'+
+                            '<input type="text" class="steakHeight" readonly value="'+ stake.stakeholderName +'"/>'+
+                       '</div>'+
+                       '<input type="button" class="delete steakHeight" value="X"/>'
+            document.getElementById("stakeholderList").innerHTML += listItem;
+
+            document.getElementById("colourKey"+ i).style.background = stake.colour;
+        }
     }
 }
 

@@ -19,8 +19,11 @@
             <div id="stakeholderControls" class="vSpacingMed">
                 <div class="title">Stakeholders</div>
                 <div class="vSpacingSmall">Please add the project stakeholders and position them on the axis</div>
-                <form id="addNewStakeholderForm" class="vSpacingSmall" onsubmit="return false">
-                    <input id="stakeholderName" type="text" class="greyBoarder"/><input type="submit" id="addStakeButton" value="Add"/>
+
+				<div id="stakeholderList">
+                </div>
+				<form id="addNewStakeholderForm" class="vSpacingSmall" onsubmit="return false">
+                    <div class="greyBoarder inline"><a href="#" class="colourKey"></a><input id="stakeholderName" type="text" placeholder="Add stakeholder..." class="steakHeight"/></div><input type="submit" id="addStakeButton" class="steakHeight" value="+"/>
                 </form>
             </div>
 			<div id="finishButtons" class="vSpacingLarge">
