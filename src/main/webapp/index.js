@@ -37,6 +37,7 @@ function setup(){
 	document.getElementById('addNewStakeholderForm').addEventListener('submit', addStakholder, false);
 	document.getElementById('exportButton').addEventListener('click', savePNG, false);
 	document.getElementById('resetButton').addEventListener('click', reset, false);
+    $('select[name="colorpicker"]').simplecolorpicker({picker: true});
 	//document.getElementById('helpButton').addEventListener('click', drawHelp, false);
 	
 	draw();
@@ -146,8 +147,8 @@ function addStakholder(e){
 
     if(document.getElementById("stakeholderName").value){
         var newStaker = {
-            x:20, y:20, w:70, h:70,
-            colour:randomColour(),
+            x:60, y:40, w:70, h:70,
+            colour:document.getElementById("nextColour").value,
             stakeholderName: document.getElementById("stakeholderName").value
         };
 
@@ -155,8 +156,8 @@ function addStakholder(e){
         stakeholders.push(newStaker);
 
         drawStakeholderList();
-
         draw();
+        //document.getElementById("nextColour").style.backgroundColor = randomColour();
     }else{
         alert('Please enter a name');
     }
@@ -212,16 +213,26 @@ function drawStakeholderList(){
     var listItem = '';
     document.getElementById("stakeholderList").innerHTML = listItem;
 
+    $('select[name="colorpicker"]').simplecolorpicker('destroy');
+
     for(var i = 0; i<stakeholders.length; i++){
         var stake = stakeholders[i];
         listItem = '<div class="greyBoarder inline vSpacingSmall">'+
-                        '<a id="colourKey'+ i +'" href="#" class="colourKey"></a>'+
-                        '<input type="text" class="steakHeight" readonly value="'+ stake.stakeholderName +'"/>'+
+                        defineColourpickerHTML(i) +
+                        '<input type="text" class="steakHeight shiftOverToTheRightABit" readonly value="'+ stake.stakeholderName +'"/>'+
                    '</div>'+
-                   '<input id="deleteSteak'+ i +'" type="button" class="delete steakHeight" value="X" onclick="deleteSteak('+ i +')"/>'
+                   '<input id="deleteSteak'+ i +'" type="button" class="delete steakHeight" value="x" onclick="deleteSteak('+ i +')"/>'
         document.getElementById("stakeholderList").innerHTML += listItem;
+    }
 
-        document.getElementById("colourKey"+ i).style.background = stake.colour;
+    $('select[name="colorpicker"]').simplecolorpicker({picker: true});
+
+    for(var i = 0; i<stakeholders.length; i++){
+        $('#steakColour' + i).on('change', function(e) {
+             paintSteak($('#' + this.id).attr('data-index'), $('#' + this.id).val());
+           });
+        var stake = stakeholders[i];
+        $('#steakColour' + i).simplecolorpicker('selectColor', stake.colour);
     }
 }
 
@@ -229,4 +240,25 @@ function deleteSteak(stakeID){
     stakeholders.splice(stakeID, 1);
     drawStakeholderList();
     draw();
+}
+
+function paintSteak(id, colour){
+    stakeholders[id].colour = colour;
+    draw();
+}
+
+function defineColourpickerHTML(i){
+    var colourPickerHTML = '<select id="steakColour'+i+'" data-index="'+i+'" name="colorpicker">' +
+                                '<option value="#7bd148">Green</option>' +
+                                '<option value="#5484ed">Bold blue</option>' +
+                                '<option value="#a4bdfc">Blue</option>' +
+                                '<option value="#46d6db">Turquoise</option>' +
+                                '<option value="#7ae7bf">Light green</option>' +
+                                '<option value="#51b749">Bold green</option>' +
+                                '<option value="#fbd75b">Yellow</option>' +
+                                '<option value="#ffb878">Orange</option>' +
+                                '<option value="#ff887c">Red</option>' +
+                                '<option value="#dc2127">Bold red</option>' +
+                            '</select>'
+    return colourPickerHTML;
 }

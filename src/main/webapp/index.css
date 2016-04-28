@@ -89,6 +89,10 @@ body{
     background: #FF6319;
 }
 
+.invisible{
+    display:none;
+}
+
 .inline{
     display: inline-block;
 }
@@ -117,9 +121,14 @@ body{
     display: inline-block;
     width: 24px;
     height: 24px;
+    border:none;
     border-radius: 50px;
     vertical-align: middle;
     margin: 0px 6px;
+}
+
+.shiftOverToTheRightABit{
+    margin-right: 3px;
 }
 
 /* STYLESHEET STYLES */
@@ -176,4 +185,29 @@ body{
 
 .vSpacingLarge{
     margin-top: 24px;
+}
+
+.vSpacingHuge{
+    margin-top: 48px;
+}
+
+/* Colour Picker Styles */
+.simplecolorpicker.icon{
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border:none;
+    border-radius: 50px;
+    vertical-align: middle;
+    margin: 0px 6px;
+}
+
+.simplecolorpicker.picker{
+    padding: 0px;
+    margin-top: 15px;
+}
+
+.simplecolorpicker span{
+    margin: 0px;
+    width:24px;
 }
