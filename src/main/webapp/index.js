@@ -264,7 +264,7 @@ function drawStakeholderList(){
 
 function getNextColour(){
     var index = colourList.indexOf($('#nextColour').val());
-    if(index = colourList.length-1){
+    if(index == colourList.length-1){
         nextColourIndex = 0;
     }else{
         nextColourIndex = index+1;
