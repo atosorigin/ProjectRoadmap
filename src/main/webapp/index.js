@@ -10,6 +10,20 @@ var ctx;
 
 var stakeholders = [];
 
+var colourList = [
+    '#7bd148',
+    '#5484ed',
+    '#a4bdfc',
+    '#46d6db',
+    '#7ae7bf',
+    '#51b749',
+    '#fbd75b',
+    '#ffb878',
+    '#ff887c',
+    '#dc2127'
+];
+var nextColourIndex = 1;
+
 var canvasSide;
 var canvasArea;
 
@@ -38,6 +52,9 @@ function setup(){
 	document.getElementById('exportButton').addEventListener('click', savePNG, false);
 	document.getElementById('resetButton').addEventListener('click', reset, false);
     $('select[name="colorpicker"]').simplecolorpicker({picker: true});
+    $('#nextColour').on('change', function(e) {
+        getNextColour()
+    });
 	//document.getElementById('helpButton').addEventListener('click', drawHelp, false);
 	
 	draw();
@@ -157,7 +174,13 @@ function addStakholder(e){
 
         drawStakeholderList();
         draw();
-        //document.getElementById("nextColour").style.backgroundColor = randomColour();
+        $('#nextColour').simplecolorpicker('selectColor', colourList[nextColourIndex]);
+
+        if(nextColourIndex < colourList.length-1){
+            nextColourIndex++
+        }else{
+            nextColourIndex = 0;
+        }
     }else{
         alert('Please enter a name');
     }
@@ -226,6 +249,9 @@ function drawStakeholderList(){
     }
 
     $('select[name="colorpicker"]').simplecolorpicker({picker: true});
+    $('#nextColour').on('change', function(e) {
+        getNextColour();
+    });
 
     for(var i = 0; i<stakeholders.length; i++){
         $('#steakColour' + i).on('change', function(e) {
@@ -233,6 +259,15 @@ function drawStakeholderList(){
            });
         var stake = stakeholders[i];
         $('#steakColour' + i).simplecolorpicker('selectColor', stake.colour);
+    }
+}
+
+function getNextColour(){
+    var index = colourList.indexOf($('#nextColour').val());
+    if(index = colourList.length-1){
+        nextColourIndex = 0;
+    }else{
+        nextColourIndex = index+1;
     }
 }
 
