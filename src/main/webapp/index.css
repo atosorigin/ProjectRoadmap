@@ -15,6 +15,7 @@
 
 body{
     margin:0px;
+    background: hsla(0, 0%, 98%, 1);
 }
 
 textarea{
@@ -64,13 +65,14 @@ input.delete:hover{
     border: 1px solid hsla(360, 100%, 32%, 1);
 }
 
-body{
-    background: lightgray;
+input.greyBack, .greyBack{
+    background: hsla(0, 0%, 98%, 1);
 }
 
 #controls{
     vertical-align: top;
     background: white;
+    border-right: 1px solid lightgrey;
 }
 
 #stakeholderControls{
@@ -127,8 +129,17 @@ body{
     margin: 0px 6px;
 }
 
+.allTheWidth{
+    width:100%;
+}
+
 .shiftOverToTheRightABit{
     margin-right: 3px;
+}
+
+.titleBacking{
+    border-bottom: 1px solid lightgrey;
+    background: hsla(0, 0%, 98%, 1);
 }
 
 /* STYLESHEET STYLES */
