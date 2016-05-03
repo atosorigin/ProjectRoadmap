@@ -50,7 +50,7 @@ function setup(){
 
 	document.getElementById('addNewStakeholderForm').addEventListener('submit', addStakholder, false);
 	document.getElementById('exportButton').addEventListener('click', savePNG, false);
-	document.getElementById('resetButton').addEventListener('click', reset, false);
+	//document.getElementById('resetButton').addEventListener('click', reset, false);
     $('select[name="colorpicker"]').simplecolorpicker({picker: true});
     $('#nextColour').on('change', function(e) {
         getNextColour()

@@ -51,6 +51,11 @@ input[type=submit]:hover, input[type=button]:hover{
     border: 1px solid hsla(202, 100%, 22%, 1);
 }
 
+input[type=submit]:active, input[type=button]:active{
+    background: hsla(202, 100%, 12%, 1);
+    border: 1px solid hsla(202, 100%, 12%, 1);
+}
+
 input.steakHeight{
     height:36px;
 }
@@ -88,7 +93,7 @@ input.greyBack, .greyBack{
 }
 
 #exportButton{
-    background: #FF6319;
+    /*background: #FF6319;*/
 }
 
 .invisible{
@@ -113,6 +118,10 @@ input.greyBack, .greyBack{
 
 .button:hover {
     background: hsla(202, 100%, 22%, 1);
+}
+
+.button:active {
+    background: hsla(202, 100%, 12%, 1);
 }
 
 .greyBoarder{
