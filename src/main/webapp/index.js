@@ -25,6 +25,7 @@ var colourList = [
     '#33495F'
 ];
 var nextColourIndex = 1;
+var helpVisible = false;
 
 var canvasSide;
 var canvasArea;

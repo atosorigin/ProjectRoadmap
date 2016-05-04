@@ -99,6 +99,10 @@ input.greyBack, .greyBack{
     /*background: #FF6319;*/
 }
 
+#helpButton{
+    display: none;
+}
+
 .invisible{
     display:none;
 }
