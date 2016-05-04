@@ -11,16 +11,18 @@ var ctx;
 var stakeholders = [];
 
 var colourList = [
-    '#7bd148',
-    '#5484ed',
-    '#a4bdfc',
-    '#46d6db',
-    '#7ae7bf',
-    '#51b749',
-    '#fbd75b',
-    '#ffb878',
-    '#ff887c',
-    '#dc2127'
+    '#F2C500',
+    '#E87E04',
+    '#E94B35',
+    '#8B572A',
+    '#91CCF3',
+    '#227FBB',
+    '#2C9ADE',
+    '#0CE3BD',
+    '#30B86D',
+    '#078740',
+    '#9C56B8',
+    '#33495F'
 ];
 var nextColourIndex = 1;
 
@@ -55,7 +57,7 @@ function setup(){
     $('#nextColour').on('change', function(e) {
         getNextColour()
     });
-	//document.getElementById('helpButton').addEventListener('click', drawHelp, false);
+	document.getElementById('helpButton').addEventListener('click', drawHelp, false);
 	
 	draw();
 }
@@ -105,7 +107,8 @@ function draw(){
         var staker = stakeholders[i];
 
         ctx.fillStyle = staker.colour;
-        ctx.fillRect(staker.x, staker.y, staker.w, staker.h)
+        //ctx.fillRect(staker.x, staker.y, staker.w, staker.h);
+        roundRect(ctx, staker.x, staker.y, staker.w, staker.h, 4, true, false);
         ctx.font = '15px Arial';
         ctx.fillStyle = "#000000";
         ctx.fillText(staker.stakeholderName, staker.x, staker.y + staker.h + 12)
@@ -133,7 +136,7 @@ function savePNG(){
     var dataURL = output.toDataURL("image/png");
     document.getElementById('exportButton').href = dataURL;
 
-    drawHelp();
+    //drawHelp();
 }
 
 function drawBackground(){
@@ -240,11 +243,11 @@ function drawStakeholderList(){
 
     for(var i = 0; i<stakeholders.length; i++){
         var stake = stakeholders[i];
-        listItem = '<div class="greyBoarder inline vSpacingSmall">'+
+        listItem = '<div class="greyBoarder inline shiftOverToTheRightABit vSpacingSmall">'+
                         defineColourpickerHTML(i) +
                         '<input type="text" class="steakHeight shiftOverToTheRightABit" readonly value="'+ stake.stakeholderName +'"/>'+
-                   '</div>'+
-                   '<input id="deleteSteak'+ i +'" type="button" class="delete steakHeight" value="x" onclick="deleteSteak('+ i +')"/>'
+                        '<input id="deleteSteak'+ i +'" type="button" class="delete steakHeight" value="x" onclick="deleteSteak('+ i +')"/>' +
+                   '</div>';
         document.getElementById("stakeholderList").innerHTML += listItem;
     }
 
@@ -284,16 +287,72 @@ function paintSteak(id, colour){
 
 function defineColourpickerHTML(i){
     var colourPickerHTML = '<select id="steakColour'+i+'" data-index="'+i+'" name="colorpicker">' +
-                                '<option value="#7bd148">Green</option>' +
-                                '<option value="#5484ed">Bold blue</option>' +
-                                '<option value="#a4bdfc">Blue</option>' +
-                                '<option value="#46d6db">Turquoise</option>' +
-                                '<option value="#7ae7bf">Light green</option>' +
-                                '<option value="#51b749">Bold green</option>' +
-                                '<option value="#fbd75b">Yellow</option>' +
-                                '<option value="#ffb878">Orange</option>' +
-                                '<option value="#ff887c">Red</option>' +
-                                '<option value="#dc2127">Bold red</option>' +
+                                '<option value="#F2C500">Yellow</option>'+
+                                '<option value="#E87E04">Orange</option>'+
+                                '<option value="#E94B35">Red</option>'+
+                                '<option value="#8B572A">Brown</option>'+
+                                '<option value="#91CCF3">Sky blue</option>'+
+                                '<option value="#227FBB">Blue</option>'+
+                                '<option value="#2C9ADE">Light blue</option>'+
+                                '<option value="#0CE3BD">Turquoise</option>'+
+                                '<option value="#30B86D">Green</option>'+
+                                '<option value="#078740">Dark green</option>'+
+                                '<option value="#9C56B8">Purple</option>'+
+                                '<option value="#33495F">Stormy</option>'+
                             '</select>'
     return colourPickerHTML;
+}
+
+/* Function discovered on StackOverflow */
+/**
+ * Draws a rounded rectangle using the current state of the canvas.
+ * If you omit the last three params, it will draw a rectangle
+ * outline with a 5 pixel border radius
+ * @param {CanvasRenderingContext2D} ctx
+ * @param {Number} x The top left x coordinate
+ * @param {Number} y The top left y coordinate
+ * @param {Number} width The width of the rectangle
+ * @param {Number} height The height of the rectangle
+ * @param {Number} [radius = 5] The corner radius; It can also be an object
+ *                 to specify different radii for corners
+ * @param {Number} [radius.tl = 0] Top left
+ * @param {Number} [radius.tr = 0] Top right
+ * @param {Number} [radius.br = 0] Bottom right
+ * @param {Number} [radius.bl = 0] Bottom left
+ * @param {Boolean} [fill = false] Whether to fill the rectangle.
+ * @param {Boolean} [stroke = true] Whether to stroke the rectangle.
+ */
+function roundRect(ctx, x, y, width, height, radius, fill, stroke) {
+  if (typeof stroke == 'undefined') {
+    stroke = true;
+  }
+  if (typeof radius === 'undefined') {
+    radius = 5;
+  }
+  if (typeof radius === 'number') {
+    radius = {tl: radius, tr: radius, br: radius, bl: radius};
+  } else {
+    var defaultRadius = {tl: 0, tr: 0, br: 0, bl: 0};
+    for (var side in defaultRadius) {
+      radius[side] = radius[side] || defaultRadius[side];
+    }
+  }
+  ctx.beginPath();
+  ctx.moveTo(x + radius.tl, y);
+  ctx.lineTo(x + width - radius.tr, y);
+  ctx.quadraticCurveTo(x + width, y, x + width, y + radius.tr);
+  ctx.lineTo(x + width, y + height - radius.br);
+  ctx.quadraticCurveTo(x + width, y + height, x + width - radius.br, y + height);
+  ctx.lineTo(x + radius.bl, y + height);
+  ctx.quadraticCurveTo(x, y + height, x, y + height - radius.bl);
+  ctx.lineTo(x, y + radius.tl);
+  ctx.quadraticCurveTo(x, y, x + radius.tl, y);
+  ctx.closePath();
+  if (fill) {
+    ctx.fill();
+  }
+  if (stroke) {
+    ctx.stroke();
+  }
+
 }
