@@ -136,7 +136,7 @@ function savePNG(){
     }
 
     var dataURL = output.toDataURL("image/png");
-    document.getElementById('exportButton').download= getFilename();
+    document.getElementById('exportButton').download = getFilename();
     document.getElementById('exportButton').href = dataURL;
 
     //drawHelp();
@@ -146,7 +146,7 @@ function getFilename(){
     var id = document.getElementById('projectID');
     var name = document.getElementById('projectName');
 
-    var filename = id + "-" + name + ".png";
+    var filename = id.value + "-" + name.value + ".png";
 
     filename.replace(" ", "_");
 
