@@ -114,6 +114,7 @@ function draw(){
         ctx.fillStyle = "#000000";
         ctx.fillText(staker.stakeholderName, staker.x, staker.y + staker.h + 12)
     }
+    helpVisible = false;
 }
 
 function savePNG(){
@@ -135,9 +136,21 @@ function savePNG(){
     }
 
     var dataURL = output.toDataURL("image/png");
+    document.getElementById('exportButton').download= getFilename();
     document.getElementById('exportButton').href = dataURL;
 
     //drawHelp();
+}
+
+function getFilename(){
+    var id = document.getElementById('projectID');
+    var name = document.getElementById('projectName');
+
+    var filename = id + "-" + name + ".png";
+
+    filename.replace(" ", "_");
+
+    return filename;
 }
 
 function drawBackground(){
@@ -228,12 +241,16 @@ function screenChanged(){
 }
 
 function drawHelp(){
-    var overlay = new Image();
-    overlay.onload = function(){
-
-        ctx.drawImage(overlay, 0, 0, canvas.width, canvas.height);
+    if(!helpVisible){
+        var overlay = new Image();
+        overlay.onload = function(){
+            ctx.drawImage(overlay, 0, 0, canvas.width, canvas.height);
+            helpVisible = true;
+        }
+        overlay.src = "images/helpOverlay.svg";
+    }else{
+        draw();
     }
-    overlay.src = "images/helpOverlay.svg";
 }
 
 function drawStakeholderList(){
