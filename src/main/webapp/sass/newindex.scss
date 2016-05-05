@@ -1,0 +1,239 @@
+@font-face{
+    font-family: 'Roboto', sans-serif;
+}
+
+@font-face{
+    font-family: 'Roboto Slab', serif;
+}
+
+@import 'colours';
+
+$radius-roundedcorners: 4px;
+
+*{
+    font-family: Roboto;
+    color: $black20;
+    font-size: 14px;
+    line-height: 24px;
+}
+
+body{
+    margin:0px;
+    background: $black98;
+}
+
+textarea{
+    border: none;
+    width:100%;
+    margin: 0em 0em 1em 0em;
+}
+
+/* Inputs */
+input{
+    background: white;
+    border: none;
+    color: $white;
+    text-decoration: none;
+    padding: 0em 0.1em 0em 0.1em;
+}
+
+input[type=text]{
+    background: $white;
+    color: $black00;
+}
+
+input[type=submit], input[type=button]{
+    cursor: pointer;
+    background: $brandBlue;
+    padding-right: 1em;
+    padding-left: 1em;
+    border: 1px solid $brandBlue;
+}
+
+input[type=submit]:hover, input[type=button]:hover{
+    background: $brandBlueDeep;
+    border: 1px solid $brandBlueDeep;
+}
+
+input[type=submit]:active, input[type=button]:active{
+    background: $brandBlueDark;
+    border: 1px solid $brandBlueDark;
+}
+
+input.steakHeight{
+    height:36px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+input.delete{
+    background: $black60;
+    border: 1px solid $black60;
+}
+
+input.delete:hover{
+    background: $warning;
+    border: 1px solid $warning;
+}
+
+input.greyBack, .greyBack{
+    background: $black98;
+}
+
+#controls{
+    vertical-align: top;
+    background: white;
+    border-right: 1px solid $black85;
+}
+
+#stakeholderControls{
+    padding-top: 1em;
+}
+
+#canvases{
+    margin: 0px;
+    margin-top: 3px;
+}
+
+#draggableCanvas{
+	position: absolute;
+}
+
+.invisible{
+    display:none;
+}
+
+.inline{
+    display: inline-block;
+}
+
+.padding{
+    padding: 0px 24px;
+}
+
+.button {
+    text-decoration: none;
+    color: $white;
+    background: $brandBlue;
+    padding: 0.5em 1em 0.5em 1em;
+    margin-right:6px;
+    border-radius: $radius-roundedcorners;
+}
+
+.button:hover {
+    background: $brandBlueDeep;
+}
+
+.button:active {
+    background: $brandBlueDark;
+}
+
+.greyBoarder{
+    border: 1px solid $black85;
+    border-radius: $radius-roundedcorners;
+}
+
+.colourKey{
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border:none;
+    border-radius: 50px;
+    vertical-align: middle;
+    margin: 0px 6px;
+}
+
+.allTheWidth{
+    width:100%;
+}
+
+.shiftOverToTheRightABit{
+    margin-right: 3px;
+}
+
+.titleBacking{
+    border-bottom: 1px solid $black85;
+    background: $black98;
+}
+
+/* STYLESHEET STYLES */
+
+/* Typography */
+.title{
+    font-family: Roboto Slab;
+    color: $black20;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.titleSmall{
+    font-family: Roboto Slab;
+    color: $black20;
+    font-size: 14px;
+    line-height: 24px;
+}
+
+.label{
+    text-transform: uppercase;
+    color: $black20;
+    font-size: 12px;
+    line-height: 24px;
+    font-family: Roboto;
+}
+
+.labelStrong{
+    text-transform: uppercase;
+    color: $black40;
+    font-size: 10px;
+    line-height: 11px;
+    font-family: Roboto;
+    font-weight: 500;
+}
+
+.labelSmall{
+    text-transform: uppercase;
+    color: $black40;
+    font-size: 10px;
+    line-height: 11px;
+    font-family: Roboto;
+    font-weight: 300;
+}
+
+/* Padding */
+.vSpacingSmall{
+    margin-top: 6px;
+}
+
+.vSpacingMed{
+    margin-top: 12px;
+}
+
+.vSpacingLarge{
+    margin-top: 24px;
+}
+
+.vSpacingHuge{
+    margin-top: 48px;
+}
+
+/* Colour Picker Styles */
+.simplecolorpicker.icon{
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border:none;
+    border-radius: 50px;
+    vertical-align: middle;
+    margin: 0px 6px;
+}
+
+.simplecolorpicker.picker{
+    padding: 0px;
+    margin-top: 15px;
+    max-width: 312px;
+}
+
+.simplecolorpicker span{
+    margin: 0px;
+    width:24px;
+}
