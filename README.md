@@ -7,6 +7,7 @@ Technical highlights:
  - Uses layered canvases to provide an efficient static background. This is merged with the drag and drop layer for export.
  - Combines use of the download attribute and the Canvas.toDataURL method to allow downloading of the canvas as an image.
  - Swatch colour picker with custom styles.
+ - Deployed to Openshift for easy access.
 
 References:
  - The tool on Openshift: http://stakeholdermanagement-atosdpu.rhcloud.com/
