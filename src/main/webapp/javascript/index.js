@@ -3,9 +3,9 @@ window.onload = function(){
 }
 
 /* Variables */
-var backgroundCanvas;
+//var backgroundCanvas;
 var canvas;
-var backCtx;
+//var backCtx;
 var ctx;
 
 var stakeholders = [];
@@ -29,6 +29,8 @@ var helpVisible = false;
 
 var canvasSide;
 var canvasArea;
+var canvases;
+
 
 function setup(){
     document.getElementById("projectID").focus();
@@ -36,8 +38,9 @@ function setup(){
     //Get canvas objects
 	backgroundCanvas = document.getElementById('backgroundCanvas');
 	canvas = document.getElementById('draggableCanvas');
-	backCtx = backgroundCanvas.getContext("2d");
+	//backCtx = backgroundCanvas.getContext("2d");
 	ctx = canvas.getContext('2d');
+	canvases = document.getElementById("canvases");
 
     stakeholders = [];
 
@@ -58,7 +61,7 @@ function setup(){
     $('#nextColour').on('change', function(e) {
         getNextColour()
     });
-	document.getElementById('helpButton').addEventListener('click', drawHelp, false);
+	//document.getElementById('helpButton').addEventListener('click', drawHelp, false);
 	
 	draw();
 }
@@ -73,7 +76,7 @@ function mouseDown(e){
 
         var staker = stakeholders[i];
 
-        if(detectHit(staker.x, staker.y, e.clientX, e.clientY, staker.w, staker.h)){
+        if(detectHit(staker.x - canvases.scrollLeft, staker.y, e.clientX, e.clientY, staker.w, staker.h)){
             currentObject = staker;
             window.addEventListener('mousemove', divMove, true);
             break;
@@ -82,7 +85,7 @@ function mouseDown(e){
 }
 
 function divMove(e){
-    currentObject.x = e.clientX - canvasArea.left -25;
+    currentObject.x = e.clientX - canvasArea.left -25 + canvases.scrollLeft;
     currentObject.y = e.clientY - canvasArea.top -25;
     draw();
 }
@@ -103,7 +106,7 @@ function detectHit(objx, objy, mousex, mousey, objw, objh){
 function draw(){
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
+    drawBackground();
     for(var i = 0; i < stakeholders.length; i++){
         var staker = stakeholders[i];
 
@@ -124,7 +127,7 @@ function savePNG(){
     output.width = output.height;
     var outCtx = output.getContext('2d');
 
-    outCtx.drawImage(backgroundCanvas, 0, 0);
+    //outCtx.drawImage(backgroundCanvas, 0, 0);
     for(var i = 0; i < stakeholders.length; i++){
         var staker = stakeholders[i];
 
@@ -154,26 +157,38 @@ function getFilename(){
 }
 
 function drawBackground(){
-    var backgroundImage = new Image();
-    backgroundImage.onload = function(){
+//    var backgroundImage = new Image();
+//    backgroundImage.onload = function(){
+//
+//        backCtx.drawImage(backgroundImage, 0, 0, backgroundCanvas.width, backgroundCanvas.height);
+//    }
+//    backgroundImage.src = "images/axis.svg";
 
-        backCtx.drawImage(backgroundImage, 0, 0, backgroundCanvas.width, backgroundCanvas.height);
-    }
-    backgroundImage.src = "images/axis.svg";
+    var startpoint = canvas.height/2;
+    var backgroundLength = canvas.width;
+
+    ctx.beginPath();
+
+    ctx.moveTo(24,startpoint + 24);
+    ctx.lineTo(24,startpoint - 24);
+
+    ctx.moveTo(24,startpoint);
+    ctx.lineTo(backgroundLength,startpoint);
+    ctx.stroke();
 }
 
 function setupCanvas(){
 
-    backgroundCanvas.height = canvasSide - 5;
-    backgroundCanvas.width = backgroundCanvas.height;
+    canvas.height = canvasSide - 30;
+    canvas.width = 10000; //backgroundCanvas.height;
 
-    var backgroundAres = backgroundCanvas.getBoundingClientRect();
+//    var backgroundAres = backgroundCanvas.getBoundingClientRect();
 
-    canvas.style.top = backgroundAres.top + "px";
-    canvas.style.left = backgroundAres.left  + "px";
+//    canvas.style.top = backgroundAres.top + "px";
+//    canvas.style.left = backgroundAres.left  + "px";
 
-    canvas.height = canvasSide - 5;
-    canvas.width = canvas.height;
+//    canvas.height = canvasSide - 40;
+//    canvas.width = 1000;
 }
 
 function addStakholder(e){
@@ -221,8 +236,11 @@ function getDimensions(){
 function setupMenu(){
     var controls = document.getElementById("controls");
 
-    controls.style.height = window.innerHeight + "px";
-    controls.style.width = window.innerWidth/3  + "px";
+//    controls.style.height = window.innerHeight + "px";
+    controls.style.minWidth = window.innerWidth/3  + "px";
+
+//    var canvases = document.getElementById("canvases");
+//    canvases.style.width = (window.innerWidth/3*2)-22  + "px";
 }
 
 function reset(){
@@ -235,7 +253,7 @@ function screenChanged(){
     canvasSide = getDimensions()-6; //take 3px margin around canvas into account.
     setupMenu();
     setupCanvas();
-    drawBackground();
+
     canvasArea = canvas.getBoundingClientRect();
     draw();
 }

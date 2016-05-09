@@ -95,10 +95,6 @@ input.greyBack, .greyBack{
     margin-top: 3px;
 }
 
-#draggableCanvas{
-	position: absolute;
-}
-
 .invisible{
     display:none;
 }
@@ -154,6 +150,27 @@ input.greyBack, .greyBack{
 .titleBacking{
     border-bottom: 1px solid $black85;
     background: $black98;
+}
+
+.scrollable{
+    overflow: scroll;
+}
+
+.wiiide{
+    width: 10000px;
+}
+
+.flex{
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.weight1{
+    flex-grow: 0;
+}
+
+.weight2{
+    flex-grow: 1;
 }
 
 /* STYLESHEET STYLES */

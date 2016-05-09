@@ -72,9 +72,6 @@ input.greyBack, .greyBack {
   margin: 0px;
   margin-top: 3px; }
 
-#draggableCanvas {
-  position: absolute; }
-
 .invisible {
   display: none; }
 
@@ -120,6 +117,22 @@ input.greyBack, .greyBack {
 .titleBacking {
   border-bottom: 1px solid #d9d9d9;
   background: #fafafa; }
+
+.scrollable {
+  overflow: scroll; }
+
+.wiiide {
+  width: 10000px; }
+
+.flex {
+  display: flex;
+  flex-wrap: nowrap; }
+
+.weight1 {
+  flex-grow: 0; }
+
+.weight2 {
+  flex-grow: 1; }
 
 /* STYLESHEET STYLES */
 /* Typography */

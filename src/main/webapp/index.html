@@ -9,21 +9,21 @@
     <script src="plugins/jquery.simplecolorpicker.js"></script>
     <script src="javascript/index.js"></script>
 </head>
-<body>
-    <div id="controls" class="inline">
+<body class="flex">
+    <div id="controls" class="weight1">
 		<div class="padding titleBacking">
 			<div id="introText">
 				<input id="projectID" type="text" placeholder="Project ID#" class="label greyBack vSpacingLarge"/><br/>
-                <input id="projectName" type="text" placeholder="Project Title" class="title greyBack allTheWidth"/><br/>
+                <input id="projectName" type="text" placeholder="Name the road here!" class="title greyBack allTheWidth"/><br/>
 
 				<textarea id="projectVision" rows="4" cols="50" class="vSpacingSmall greyBack"
-                       placeholder="Write down the project vision so that your team knows What, Why, and for Whom you are building this business solution... Here is some more padding so we can see all the lines. It's a bit more than we'd usually include here"></textarea>
+                       placeholder="Describe the road here!"></textarea>
 			</div>
 		</div>
 		<div class="padding">
             <div id="stakeholderControls" class="vSpacingMed">
-                <div class="title">Stakeholders</div>
-                <div class="vSpacingSmall">Please add the project stakeholders and position them on the axis</div>
+                <div class="title">Cards</div>
+                <div class="vSpacingSmall">Name your cards, then add them to the roadmap</div>
 
 				<div id="stakeholderList">
                 </div>
@@ -43,26 +43,25 @@
                             <option value="#9C56B8">Purple</option>
                             <option value="#33495F">Stormy</option>
 						</select>
-						<input id="stakeholderName" type="text" placeholder="Add stakeholder..." class="steakHeight"/><input type="submit" id="addStakeButton" class="steakHeight" value="+"/>
+						<input id="stakeholderName" type="text" placeholder="Add card..." class="steakHeight"/><input type="submit" id="addStakeButton" class="steakHeight" value="+"/>
 					</div>
                 </form>
             </div>
 			<div id="finishButtons" class="vSpacingHuge">
 				<!--<a href="#" class="button" id="resetButton">Reset board
-                </a>-->
-				<a href="#" class="button" id="helpButton">Show details
                 </a>
-                <a href='#' class="button" id="exportButton" download="stakeholders.png">Save stakeholder map</a>
+				<a href="#" class="button" id="helpButton">Show details
+                </a>-->
+                <a href='#' class="button" id="exportButton" download="stakeholders.png">Save roadmap</a>
 			</div>
 		</div>
     </div>
-	<div id="canvases" class="inline">
-		<canvas id="backgroundCanvas">
-			Sorry, Canvas is not supported. Please use Chrome or Firefox to utilise this application.
-		</canvas>
-		<canvas id="draggableCanvas">
-
-		</canvas>
+	<div id="canvases" class="weight2 scrollable">
+		<div class="wiiide">
+            <canvas id="draggableCanvas">
+                Sorry, Canvas is not supported. Please use Chrome or Firefox to utilise this application.
+            </canvas>
+        </div>
 	</div>
 
 </body>
